@@ -295,6 +295,7 @@ int main()
 	Model CasaBrujas("resources/objects/CasaBrujas/Brujas.obj");
 	Model CuboKarly("resources/objects/CuboKarla/CuboKarly.obj");*/
 	Model Elefante("resources/objects/Elefante/elefante.obj");
+	Model Base("resources/objects/ZooBase/zoo.obj");
 
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
@@ -341,13 +342,13 @@ int main()
 		//Setup Advanced Lights
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
-		staticShader.setVec3("dirLight.ambient", glm::vec3(0.6f, 0.6f, 0.6f));
+		staticShader.setVec3("dirLight.ambient", glm::vec3(0.8f, 0.8f, 0.8f));
 		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.2f, 0.2f, 0.2f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
 
 		staticShader.setVec3("pointLight[0].position", lightPosition);
 		staticShader.setVec3("pointLight[0].ambient", glm::vec3(0.2f, 0.2f, 0.0f));
-		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 0.0f));
+		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setVec3("pointLight[0].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setFloat("pointLight[0].constant", 0.08f);
 		staticShader.setFloat("pointLight[0].linear", 0.009f);
@@ -421,45 +422,39 @@ int main()
 		/*ninja.Draw(animShader);*/
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Escenario
+		//                                               Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
-		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(-70.0f, 0.0f, 15.0f));
-		model = glm::scale(model, glm::vec3(2.0f));
-		staticShader.setMat4("model", model);
-		CasaBrujas.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.0f, 0.0f, -20.0f));
-		model = glm::scale(model, glm::vec3(0.5f));
-		staticShader.setMat4("model", model);
-		CuboKarly.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, -10.0f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		casaDoll.Draw(staticShader);*/
-
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
+		model = glm::translate(model, glm::vec3(-20.0f, -1.75f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
 		staticShader.setMat4("model", model);
-		piso.Draw(staticShader);
+		/*piso.Draw(staticShader);*/
 
-		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -70.0f));
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, -1.0f, -100.0f));
 		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
-		casaVieja.Draw(staticShader);*/
+		Base.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		//                                                 Animales
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Elefante
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-120.0f, -2.0f, -510.0f));
+		model = glm::scale(model, glm::vec3(8.0f));
+		staticShader.setMat4("model", model);
+		Elefante.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Elefante
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 15.0f, -40.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
-		staticShader.setMat4("model", model);
-		Elefante.Draw(staticShader);
+
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
