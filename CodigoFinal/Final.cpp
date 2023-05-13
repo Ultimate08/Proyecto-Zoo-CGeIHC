@@ -281,21 +281,10 @@ int main()
 	// load models
 	// -----------
 	Model piso("resources/objects/piso/piso.obj");
-	/*Model botaDer("resources/objects/Personaje/bota.obj");
-	Model piernaDer("resources/objects/Personaje/piernader.obj");
-	Model piernaIzq("resources/objects/Personaje/piernader.obj");
-	Model torso("resources/objects/Personaje/torso.obj");
-	Model brazoDer("resources/objects/Personaje/brazoder.obj");
-	Model brazoIzq("resources/objects/Personaje/brazoizq.obj");
-	Model cabeza("resources/objects/Personaje/cabeza.obj");
-	Model carro("resources/objects/lambo/carroceria.obj");
-	Model llanta("resources/objects/lambo/Wheel.obj");
-	Model casaVieja("resources/objects/casa/OldHouse.obj");
-	Model casaDoll("resources/objects/casa/DollHouse.obj");
-	Model CasaBrujas("resources/objects/CasaBrujas/Brujas.obj");
-	Model CuboKarly("resources/objects/CuboKarla/CuboKarly.obj");*/
 	Model Elefante("resources/objects/Elefante/elefante.obj");
 	Model Base("resources/objects/ZooBase/zoo.obj");
+	Model Cebra("resources/objects/Cebra/cebra.obj");
+	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
 
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
@@ -451,9 +440,13 @@ int main()
 		Elefante.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Elefante
+		// Cebra
 		// -------------------------------------------------------------------------------------------------------------------------
-
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-500.0f, 0.0f, -150.0f));
+		/*model = glm::rotate();*/
+		model = glm::scale(model, glm::vec3(3.0f));
+		staticShader.setMat4("model", model);
+		Cebra.Draw(staticShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
