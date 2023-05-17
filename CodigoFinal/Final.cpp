@@ -285,7 +285,7 @@ int main()
 	// -----------
 	Model piso("resources/objects/piso/piso.obj");
 	Model Elefante("resources/objects/Elefante/elefante.obj");
-	Model Base("resources/objects/ZooBase/zoo.obj");
+	Model Base("resources/objects/ZooBase/Base.obj");
 	Model Cebra("resources/objects/Cebra/cebra.obj");
 	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
 	Model Leon("resources/objects/Leon/Leon.obj");
