@@ -288,7 +288,10 @@ int main()
 	Model Base("resources/objects/ZooBase/zoo.obj");
 	Model Cebra("resources/objects/Cebra/cebra.obj");
 	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
-
+	Model Leon("resources/objects/Leon/Leon.obj");
+	Model Oso("resources/objects/Oso/Bear.obj");
+	Model Panda("resources/objects/Panda/OsoPanda.obj");
+	Model Carro("resources/objects/jeep/jeep.obj");
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -454,10 +457,36 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Cocodilo
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(90.0f, -2.0f, -510.0f));
-		model = glm::scale(model, glm::vec3(1.3f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(80.0f, -2.0f, -510.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
 		Cocodrilo.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// León
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-50.0f, 3.0f, -275.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		Leon.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Panda
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-800.0f, 10.0f, -300.0f));
+		/*model = glm::rotate();*/
+		model = glm::scale(model, glm::vec3(7.0f));
+		staticShader.setMat4("model", model);
+		Panda.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		//                                                 Carro
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, 6.0f, -150.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		staticShader.setMat4("model", model);
+		Carro.Draw(staticShader);
+
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
