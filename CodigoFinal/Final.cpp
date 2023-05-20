@@ -75,11 +75,18 @@ float myvariableDiff = 0.0f;
 float	movAuto_x = 0.0f,
 		movAuto_z = 0.0f,
 		orienta = 0.0f;
-bool	animacion = false,
+bool	animacion = true,
 		recorrido1 = true,
 		recorrido2 = false,
 		recorrido3 = false,
 		recorrido4 = false;
+
+//Variables animación pingüino
+bool recorridoPingu = false;
+
+float	movPinX = -477.0f,
+		movPinY = 3.3f;
+
 
 
 //Keyframes (Manipulación y dibujo)
@@ -197,7 +204,18 @@ void animate(void)
 	//Vehículo
 	if (animacion)
 	{
-		movAuto_z += 3.0f;
+		//movAuto_z += 3.0f;
+
+		if (recorridoPingu == true) {
+			movPinX += 0.001;
+			if (movPinX <= -475.0) {
+				movPinX += 0.01f;
+			}
+			else {
+				recorridoPingu = false;
+			}
+			movPinY = 3 * sin(movPinX);
+		}
 	}
 }
 
@@ -292,6 +310,7 @@ int main()
 	Model Oso("resources/objects/Oso/Bear.obj");
 	Model Panda("resources/objects/Panda/OsoPanda.obj");
 	Model Carro("resources/objects/jeep/jeep.obj");
+	Model Pingu("resources/objects/Pingu/Pingu.obj");
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -480,6 +499,15 @@ int main()
 		Panda.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
+		// Pingüino 1
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, -640.0f));
+		/*model = glm::rotate();*/
+		model = glm::scale(model, glm::vec3(1.5f));
+		staticShader.setMat4("model", model);
+		Pingu.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Carro
 		// -------------------------------------------------------------------------------------------------------------------------
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, 6.0f, -150.0f));
@@ -653,8 +681,9 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		lightPosition.y++;*/
 
 	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
 		animacion ^= true;
+	}
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
@@ -684,6 +713,19 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		{
 			saveFrame();
 		}
+	}
+
+	//Salto Pingüino
+	if (key == GLFW_KEY_Q && action == GLFW_PRESS)
+	{
+		recorridoPingu ^= true; 
+	}
+
+	//Restart
+	if (key == GLFW_KEY_R && action == GLFW_PRESS)
+	{
+		movPinX = -477.0f;
+		movPinY = 3.3f;
 	}
 }
 
