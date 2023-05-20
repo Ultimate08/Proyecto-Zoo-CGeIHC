@@ -85,7 +85,9 @@ bool	animacion = true,
 bool recorridoPingu = false;
 
 float	movPinX = -477.0f,
-		movPinY = 3.3f;
+		movPinY = 3.3f,
+		movPinZ = -638.8f;
+
 
 
 
@@ -207,14 +209,14 @@ void animate(void)
 		//movAuto_z += 3.0f;
 
 		if (recorridoPingu == true) {
-			movPinX += 0.001;
-			if (movPinX <= -475.0) {
-				movPinX += 0.01f;
+			movPinZ += 0.1;
+			if (movPinZ <= -635.0f) {
+				movPinZ += 0.01f;
 			}
 			else {
 				recorridoPingu = false;
 			}
-			movPinY = 3 * sin(movPinX);
+			movPinY = (- 3) * sin(movPinZ);
 		}
 	}
 }
@@ -501,7 +503,7 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Pingüino 1
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, -640.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
 		/*model = glm::rotate();*/
 		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
@@ -726,6 +728,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	{
 		movPinX = -477.0f;
 		movPinY = 3.3f;
+		movPinZ = -638.7f;
 	}
 }
 

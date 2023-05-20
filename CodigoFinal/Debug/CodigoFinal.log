@@ -3,12 +3,12 @@
 C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
 C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(210,20): warning C4305: '+=': truncamiento de 'double' a 'float'
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(747,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(748,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(752,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(753,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(755,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(756,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(764,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(212,18): warning C4305: '+=': truncamiento de 'double' a 'float'
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(750,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(751,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(755,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(756,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(758,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(759,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(767,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
   CodigoFinal.vcxproj -> C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Proyecto-Zoo-CGeIHC\Debug\CodigoFinal.exe
