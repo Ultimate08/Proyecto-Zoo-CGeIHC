@@ -86,7 +86,10 @@ bool recorridoPingu = false;
 
 float	movPinX = -477.0f,
 		movPinY = 3.3f,
-		movPinZ = -638.8f;
+		movPinZ = -638.8f,
+		movPinX1 = -573.0f,
+		movPinY1 = -2.0f,
+		movPinZ1 = -565.0f;
 
 
 
@@ -206,17 +209,16 @@ void animate(void)
 	//Vehículo
 	if (animacion)
 	{
-		//movAuto_z += 3.0f;
 
 		if (recorridoPingu == true) {
-			movPinZ += 0.1;
-			if (movPinZ <= -635.0f) {
-				movPinZ += 0.01f;
+			movPinZ1 += 0.1f;
+			if (movPinZ1 <= -562.0f) {
+				movPinZ1 += 0.01f;
 			}
 			else {
 				recorridoPingu = false;
 			}
-			movPinY = (- 3) * sin(movPinZ);
+			movPinY1 = 4 * cos(movPinZ1);
 		}
 	}
 }
@@ -313,6 +315,8 @@ int main()
 	Model Panda("resources/objects/Panda/OsoPanda.obj");
 	Model Carro("resources/objects/jeep/jeep.obj");
 	Model Pingu("resources/objects/Pingu/Pingu.obj");
+	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
+	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -503,11 +507,21 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Pingüino 1
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
-		/*model = glm::rotate();*/
-		model = glm::scale(model, glm::vec3(1.5f));
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
+		///*model = glm::rotate();*/
+		//model = glm::scale(model, glm::vec3(1.5f));
+		//staticShader.setMat4("model", model);
+		//Pingu.Draw(staticShader);
+
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
+		//model = glm::scale(model, glm::vec3(1.5f));
+		//staticShader.setMat4("model", model);
+		//AlaDer.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX1, movPinY1, movPinZ1));
+		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
-		Pingu.Draw(staticShader);
+		Pingu1.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Carro
@@ -729,6 +743,9 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		movPinX = -477.0f;
 		movPinY = 3.3f;
 		movPinZ = -638.7f;
+		movPinX1 = -573.0f,
+		movPinY1 = -2.0f,
+		movPinZ1 = -565.0f;
 	}
 }
 
