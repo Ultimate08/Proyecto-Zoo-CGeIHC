@@ -88,9 +88,14 @@ bool recorridoPingu2 = false;
 float	movPinX1 = -592.5f,
 		movPinY1 = 0.4f,
 		movPinZ1 = -554.5f, 
-		movAlaDerX = -563.2f,
-		movAlaDerY = 1.5f,
-		movAlaDerZ = -574.5f;
+		movAlaDerX = -563.4f,
+		movAlaDerY = 1.6f,
+		movAlaDerZ = -575.5f,
+		rotAlaDer = 0.0f,
+		movAlaIzqX = -563.8f,
+		movAlaIzqY = 1.6f,
+		movAlaIzqZ = -575.5f,
+		rotAlaIzq = 0.0f;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
@@ -208,23 +213,33 @@ void animate(void)
 	if (animacion)
 	{
 		if (recorridoPingu1 == true) {
-			movAlaDerY += 0.2f;
-			if (movAlaDerY <= 1.5f) {
+			movAlaDerY += 0.3f;
+			if (movAlaDerY >= 2.0f) {
 				movAlaDerY -= 0.2f;
-				recorridoPingu1 = false;
-				recorridoPingu2 = true;
 			}
+			/*recorridoPingu1 = false;*/
+			else {
+				recorridoPingu1 = false;
+				/*rotAlaDer = -45.0f;*/
+			}
+			recorridoPingu2 = true;
 		}
 
 		if (recorridoPingu2 == true) {
 			movPinZ1 += 0.1f;
+			movAlaDerZ += 0.1f;
+			movAlaIzqZ += 0.1f;
 			if (movPinZ1 <= -551.5f) { 
 				movPinZ1 += 0.01f;
+				movAlaDerZ += 0.01f;
+				movAlaIzqZ += 0.01f;
 			} 
 			else {
 				recorridoPingu2 = false;
 			}
 			movPinY1 = 2 * -sin(movPinZ1);
+			movAlaDerY = 2 * -sin(movPinZ1);
+			movAlaIzqY = 2 * -sin(movPinZ1);
 		}
 	}
 }
@@ -325,6 +340,7 @@ int main()
 	Model AlaDer("resources/objects/Pingu/Ala_der.obj");*/
 	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
 	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
+	Model AlaIzq("resources/objects/Pingu/Ala_izq.obj");
 	Model BodyPingu1("resources/objects/Pingu/BodyPinguino.obj");
 	ModelAnim nina("resources/objects/Mixamo/RumbaDancing.dae");
 	nina.initShaders(animShader.ID);
@@ -524,8 +540,17 @@ int main()
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(movAlaDerX, movAlaDerY, movAlaDerZ));
 		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::rotate(model, glm::radians(rotAlaDer), glm::vec3(1.0f, 0.0f, .0f));
 		staticShader.setMat4("model", model);
 		AlaDer.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movAlaIzqX, movAlaIzqY, movAlaIzqZ));
+		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::rotate(model, glm::radians(rotAlaDer), glm::vec3(1.0f, 0.0f, .0f));
+		staticShader.setMat4("model", model);
+		AlaIzq.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Carro
@@ -752,6 +777,12 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		movPinX1 = -592.5f;
 		movPinY1 = 0.5f;
 		movPinZ1 = -554.5f;
+		movAlaDerX = -563.5f;
+		movAlaDerY = 1.6f;
+		movAlaDerZ = -575.5f;
+		movAlaIzqX = -563.8f;
+		movAlaIzqY = 1.6f;
+		movAlaIzqZ = -575.5f;
 	}
 }
 
