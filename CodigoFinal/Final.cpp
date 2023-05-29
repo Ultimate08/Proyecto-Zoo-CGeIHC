@@ -82,17 +82,15 @@ bool	animacion = true,
 		recorrido4 = false;
 
 //Variables animación pingüino
-bool recorridoPingu = false;
+bool recorridoPingu1 = false;
+bool recorridoPingu2 = false;
 
-float	movPinX = -477.0f,
-		movPinY = 3.3f,
-		movPinZ = -638.8f,
-		movPinX1 = -573.0f,
-		movPinY1 = -2.0f,
-		movPinZ1 = -565.0f;
-
-
-
+float	movPinX1 = -592.5f,
+		movPinY1 = 0.4f,
+		movPinZ1 = -554.5f, 
+		movAlaDerX = -563.2f,
+		movAlaDerY = 1.5f,
+		movAlaDerZ = -574.5f;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
@@ -209,16 +207,24 @@ void animate(void)
 	//Vehículo
 	if (animacion)
 	{
+		if (recorridoPingu1 == true) {
+			movAlaDerY += 0.2f;
+			if (movAlaDerY <= 1.5f) {
+				movAlaDerY -= 0.2f;
+				recorridoPingu1 = false;
+				recorridoPingu2 = true;
+			}
+		}
 
-		if (recorridoPingu == true) {
+		if (recorridoPingu2 == true) {
 			movPinZ1 += 0.1f;
-			if (movPinZ1 <= -562.0f) {
+			if (movPinZ1 <= -551.5f) { 
 				movPinZ1 += 0.01f;
-			}
+			} 
 			else {
-				recorridoPingu = false;
+				recorridoPingu2 = false;
 			}
-			movPinY1 = 4 * cos(movPinZ1);
+			movPinY1 = 2 * -sin(movPinZ1);
 		}
 	}
 }
@@ -308,21 +314,22 @@ int main()
 	Model piso("resources/objects/piso/piso.obj");
 	Model Elefante("resources/objects/Elefante/elefante.obj");
 	Model Base("resources/objects/ZooBase/Base.obj");
+	Model Agua("resources/objects/ZooBase/Sea.obj");
 	Model Cebra("resources/objects/Cebra/cebra.obj");
 	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
 	Model Leon("resources/objects/Leon/Leon.obj");
 	Model Oso("resources/objects/Oso/Bear.obj");
 	Model Panda("resources/objects/Panda/OsoPanda.obj");
 	Model Carro("resources/objects/jeep/jeep.obj");
-	Model Pingu("resources/objects/Pingu/Pingu.obj");
-	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
+	/*Model Pingu("resources/objects/Pingu/Pingu.obj");
+	Model AlaDer("resources/objects/Pingu/Ala_der.obj");*/
 	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
+	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
+	Model BodyPingu1("resources/objects/Pingu/BodyPinguino.obj");
+	ModelAnim nina("resources/objects/Mixamo/RumbaDancing.dae");
+	nina.initShaders(animShader.ID);
 
-	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	animacionPersonaje.initShaders(animShader.ID);
-
-	ModelAnim ninja("resources/objects/ZombieWalk/ZombieWalk.dae");
-	ninja.initShaders(animShader.ID);*/
+	
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -362,7 +369,7 @@ int main()
 		//Setup Advanced Lights
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
-		staticShader.setVec3("dirLight.ambient", glm::vec3(0.8f, 0.8f, 0.8f));
+		staticShader.setVec3("dirLight.ambient", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.2f, 0.2f, 0.2f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
 
@@ -435,11 +442,11 @@ int main()
 		// Segundo Personaje Animacion
 		// -------------------------------------------------------------------------------------------------------------------------
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.5f));	// it's a bit too big for our scene, so scale it down
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-350.3f, 1.75f, -310.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.09f));	// it's a bit too big for our scene, so scale it down
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		/*ninja.Draw(animShader);*/
+		nina.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                               Escenario
@@ -460,6 +467,8 @@ int main()
 		staticShader.setMat4("model", model);
 		Base.Draw(staticShader);
 
+
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Animales
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -473,9 +482,10 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Cebra
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-500.0f, 0.0f, -150.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-510.0f, 0.0f, -150.0f));
 		/*model = glm::rotate();*/
 		model = glm::scale(model, glm::vec3(3.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Cebra.Draw(staticShader);
 
@@ -507,21 +517,15 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Pingüino 1
 		// -------------------------------------------------------------------------------------------------------------------------
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
-		///*model = glm::rotate();*/
-		//model = glm::scale(model, glm::vec3(1.5f));
-		//staticShader.setMat4("model", model);
-		//Pingu.Draw(staticShader);
-
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
-		//model = glm::scale(model, glm::vec3(1.5f));
-		//staticShader.setMat4("model", model);
-		//AlaDer.Draw(staticShader);
-
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX1, movPinY1, movPinZ1));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
-		Pingu1.Draw(staticShader);
+		BodyPingu1.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movAlaDerX, movAlaDerY, movAlaDerZ));
+		model = glm::scale(model, glm::vec3(1.5f));
+		staticShader.setMat4("model", model);
+		AlaDer.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Carro
@@ -565,8 +569,13 @@ int main()
 		//staticShader.setMat4("model", model);
 		//llanta.Draw(staticShader);	//Izq trase
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje
+		// Personajes
 		// -------------------------------------------------------------------------------------------------------------------------
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.0f, 2.0f, -50.0f)); // translate it down so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.2f));	// it's a bit too big for our scene, so scale it down
+		//animShader.setMat4("model", model);
+		//nina.Draw(animShader);
+		//
 		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		//tmp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0));
@@ -734,18 +743,15 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//Salto Pingüino
 	if (key == GLFW_KEY_Q && action == GLFW_PRESS)
 	{
-		recorridoPingu ^= true; 
+		recorridoPingu1 ^= true; 
 	}
 
 	//Restart
 	if (key == GLFW_KEY_R && action == GLFW_PRESS)
 	{
-		movPinX = -477.0f;
-		movPinY = 3.3f;
-		movPinZ = -638.7f;
-		movPinX1 = -573.0f,
-		movPinY1 = -2.0f,
-		movPinZ1 = -565.0f;
+		movPinX1 = -592.5f;
+		movPinY1 = 0.5f;
+		movPinZ1 = -554.5f;
 	}
 }
 
