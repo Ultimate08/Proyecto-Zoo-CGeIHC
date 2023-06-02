@@ -86,12 +86,33 @@ bool recorridoPingu = false;
 
 float	movPinX = -477.0f,
 		movPinY = 3.3f,
-		movPinZ = -638.8f,
-		movPinX1 = -573.0f,
-		movPinY1 = -2.0f,
-		movPinZ1 = -565.0f;
+		movPinZ = -638.8f;
 
+// Elefante
+float	movX = 0.0f,
+		movY = 0.0f,
+		movZ = 0.0f,
+		rotPDelanDer = 0.0f,
+		rotPDelanIzq = 0.0f,
+		rotPTrasDer = 0.0f,
+		rotPTrasIzq = 0.0f,
+		giroElefante = 0.0f,
+		movTAlta = 0.0f,
+		movTMedia = 0.0f,
+		movTBaja = 0.0f;
 
+// Variables para calculo del incremento
+float	inX = 0.0f,
+		inY = 0.0f,
+		inZ = 0.0f,
+		incPDelanDer = 0.0f,
+		incPDelanIzq = 0.0f,
+		incPTrasDer = 0.0f,
+		incPTrasIzq = 0.0f,
+		incGiroElefante = 0.0f,
+		incTAlta = 0.0f,
+		incTMedia = 0.0f,
+		incTBaja = 0.0f;
 
 
 //Keyframes (Manipulación y dibujo)
@@ -118,6 +139,19 @@ typedef struct _frame
 	float rotRodIzq;
 	float giroMonito;
 
+	// Elefante
+	float	movX;
+	float	movY;
+	float	movZ;
+	float	rotPDelanDer;
+	float	rotPDelanIzq;
+	float	rotPTrasDer;
+	float	rotPTrasIzq;
+	float	giroElefante;
+	float	movTAlta;
+	float	movTMedia;
+	float	movTBaja;
+
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
@@ -137,6 +171,19 @@ void saveFrame(void)
 	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
 	KeyFrame[FrameIndex].giroMonito = giroMonito;
 
+	// Elefante
+	KeyFrame[FrameIndex].movX = movX;
+	KeyFrame[FrameIndex].movY = movY;
+	KeyFrame[FrameIndex].movZ = movZ;
+	KeyFrame[FrameIndex].rotPDelanDer = rotPDelanDer;
+	KeyFrame[FrameIndex].rotPDelanIzq = rotPDelanIzq;
+	KeyFrame[FrameIndex].rotPTrasDer = rotPTrasDer;
+	KeyFrame[FrameIndex].rotPTrasIzq = rotPTrasIzq;
+	KeyFrame[FrameIndex].giroElefante = giroElefante;
+	KeyFrame[FrameIndex].movTAlta = movTAlta;
+	KeyFrame[FrameIndex].movTMedia = movTMedia;
+	KeyFrame[FrameIndex].movTBaja = movTBaja;
+
 	FrameIndex++;
 }
 
@@ -148,6 +195,19 @@ void resetElements(void)
 
 	rotRodIzq = KeyFrame[0].rotRodIzq;
 	giroMonito = KeyFrame[0].giroMonito;
+
+	// Elefante
+	movX = KeyFrame[0].movX;
+	movY = KeyFrame[0].movY;
+	movZ = KeyFrame[0].movZ;
+	rotPDelanDer = KeyFrame[0].rotPDelanDer;
+	rotPDelanIzq = KeyFrame[0].rotPDelanIzq;
+	rotPTrasDer = KeyFrame[0].rotPTrasDer;
+	rotPTrasIzq = KeyFrame[0].rotPTrasIzq;
+	giroElefante = KeyFrame[0].giroElefante;
+	movTAlta = KeyFrame[0].movTAlta;
+	movTMedia = KeyFrame[0].movTMedia;
+	movTBaja = KeyFrame[0].movTBaja;
 }
 
 void interpolation(void)
@@ -159,6 +219,18 @@ void interpolation(void)
 	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
 
+	// Elefante
+	inX = (KeyFrame[playIndex + 1].movX - KeyFrame[playIndex].movX) / i_max_steps;
+	inY = (KeyFrame[playIndex + 1].movY - KeyFrame[playIndex].movY) / i_max_steps;
+	inZ = (KeyFrame[playIndex + 1].movZ - KeyFrame[playIndex].movZ) / i_max_steps;
+	incPDelanDer = (KeyFrame[playIndex + 1].rotPDelanDer - KeyFrame[playIndex].rotPDelanDer) / i_max_steps;
+	incPDelanIzq = (KeyFrame[playIndex + 1].rotPDelanIzq - KeyFrame[playIndex].rotPDelanIzq) / i_max_steps;
+	incPTrasDer = (KeyFrame[playIndex + 1].rotPTrasDer - KeyFrame[playIndex].rotPTrasDer) / i_max_steps;
+	incPTrasIzq = (KeyFrame[playIndex + 1].rotPTrasIzq - KeyFrame[playIndex].rotPTrasIzq) / i_max_steps;
+	incGiroElefante = (KeyFrame[playIndex + 1].giroElefante - KeyFrame[playIndex].giroElefante) / i_max_steps;
+	incTAlta = (KeyFrame[playIndex + 1].movTAlta - KeyFrame[playIndex].movTAlta) / i_max_steps;
+	incTMedia = (KeyFrame[playIndex + 1].movTMedia - KeyFrame[playIndex].movTMedia) / i_max_steps;
+	incTBaja = (KeyFrame[playIndex + 1].movTBaja - KeyFrame[playIndex].movTBaja) / i_max_steps;
 }
 
 void animate(void)
@@ -209,16 +281,17 @@ void animate(void)
 	//Vehículo
 	if (animacion)
 	{
+		//movAuto_z += 3.0f;
 
 		if (recorridoPingu == true) {
-			movPinZ1 += 0.1f;
-			if (movPinZ1 <= -562.0f) {
-				movPinZ1 += 0.01f;
+			movPinZ += 0.1;
+			if (movPinZ <= -635.0f) {
+				movPinZ += 0.01f;
 			}
 			else {
 				recorridoPingu = false;
 			}
-			movPinY1 = 4 * cos(movPinZ1);
+			movPinY = (- 3) * sin(movPinZ);
 		}
 	}
 }
@@ -306,17 +379,24 @@ int main()
 	// load models
 	// -----------
 	Model piso("resources/objects/piso/piso.obj");
-	Model Elefante("resources/objects/Elefante/elefante.obj");
 	Model Base("resources/objects/ZooBase/Base.obj");
 	Model Cebra("resources/objects/Cebra/cebra.obj");
 	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
-	Model Leon("resources/objects/Leon/Leon.obj");
+	Model Lion("resources/objects/Leon/Lion.obj");
 	Model Oso("resources/objects/Oso/Bear.obj");
 	Model Panda("resources/objects/Panda/OsoPanda.obj");
 	Model Carro("resources/objects/jeep/jeep.obj");
 	Model Pingu("resources/objects/Pingu/Pingu.obj");
-	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
-	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
+
+	// Elefante
+	Model cuerpo_Elefante("resources/objects/Elefante/cuerpo_Elefante.obj");
+	Model trompa_Alta("resources/objects/Elefante/trompa_Alta.obj");
+	Model trompa_Media("resources/objects/Elefante/trompa_Media.obj");
+	Model trompa_Baja("resources/objects/Elefante/trompa_Baja.obj");
+	Model pata_DelanDer("resources/objects/Elefante/pata_DelanDer.obj");
+	Model pata_DelanIzq("resources/objects/Elefante/pata_DelanIzq.obj");
+	Model pata_TrasDer("resources/objects/Elefante/pata_TrasDer.obj");
+	Model pata_TrasIzq("resources/objects/Elefante/pata_TrasIzq.obj");
 
 	/*ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -332,6 +412,19 @@ int main()
 		KeyFrame[i].posZ = 0;
 		KeyFrame[i].rotRodIzq = 0;
 		KeyFrame[i].giroMonito = 0;
+
+		// Elefante
+		KeyFrame[i].movX = 0;
+		KeyFrame[i].movY = 0;
+		KeyFrame[i].movZ = 0;
+		KeyFrame[i].rotPDelanDer = 0;
+		KeyFrame[i].rotPDelanIzq = 0;
+		KeyFrame[i].rotPTrasDer = 0;
+		KeyFrame[i].rotPTrasIzq = 0;
+		KeyFrame[i].giroElefante = 0;
+		KeyFrame[i].movTAlta = 0;
+		KeyFrame[i].movTMedia = 0;
+		KeyFrame[i].movTBaja = 0;
 	}
 
 	// draw in wireframe
@@ -397,6 +490,8 @@ int main()
 
 		glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 tmp = glm::mat4(1.0f);
+		glm::mat4 tmp2 = glm::mat4(1.0f);
+		glm::mat4 tmp3 = glm::mat4(1.0f);
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
 		glm::mat4 view = camera.GetViewMatrix();
@@ -462,20 +557,82 @@ int main()
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Animales
+		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Elefante
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-120.0f, -2.0f, -510.0f));
-		model = glm::scale(model, glm::vec3(8.0f));
-		staticShader.setMat4("model", model);
-		Elefante.Draw(staticShader);
 
+		// Cuerpo
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 1.0f, -500.0f));
+		model = glm::translate(model, glm::vec3(movX, movY, movZ));
+		tmp = model = glm::rotate(model, glm::radians(giroElefante), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(0.2f));
+		staticShader.setMat4("model", model);
+		cuerpo_Elefante.Draw(staticShader);
+		
+		// Trompa Alta
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-21.531f, 13.464f, 155.143f));
+		tmp2 = model = glm::rotate(model, glm::radians(movTAlta), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trompa_Alta.Draw(staticShader);
+
+		// Trompa Media
+		model = glm::translate(tmp2, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-18.917f, -10.09f, 156.14f));
+		tmp3 = model = glm::rotate(model, glm::radians(movTMedia), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trompa_Media.Draw(staticShader);
+
+		// Trompa Baja
+		model = glm::translate(tmp3, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-17.562f, -71.416f, 168.197f));
+		model = glm::rotate(model, glm::radians(movTBaja), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trompa_Baja.Draw(staticShader);
+
+		// Pata Delantera Derecha
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-55.719f, -17.632f, 28.851f));
+		model = glm::rotate(model, glm::radians(rotPDelanDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		pata_DelanDer.Draw(staticShader);
+
+		// Pata Delantera Izquierda
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-1.414f, -15.759f, 64.175f));
+		model = glm::rotate(model, glm::radians(rotPDelanIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		pata_DelanIzq.Draw(staticShader);
+
+		// Pata Trasera Derecha
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-43.287f, -45.054f, -85.047f));
+		model = glm::rotate(model, glm::radians(rotPTrasDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		pata_TrasDer.Draw(staticShader);
+
+		// Pata Trasera Izquierda
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-5.863f, -52.915f, -64.431f));
+		model = glm::rotate(model, glm::radians(rotPTrasIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		pata_TrasIzq.Draw(staticShader);
+
+		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Cebra
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-500.0f, 0.0f, -150.0f));
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-500.0f, 0.0f, -150.0f));
 		/*model = glm::rotate();*/
-		model = glm::scale(model, glm::vec3(3.0f));
+		/*model = glm::scale(model, glm::vec3(3.0f));
 		staticShader.setMat4("model", model);
 		Cebra.Draw(staticShader);
 
@@ -485,43 +642,33 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(80.0f, -2.0f, -510.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
-		Cocodrilo.Draw(staticShader);
+		Cocodrilo.Draw(staticShader);*/
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// León
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-50.0f, 3.0f, -275.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.0f, -10.0f, -275.0f));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
-		Leon.Draw(staticShader);
-
+		Lion.Draw(staticShader);
+		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Panda
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-800.0f, 10.0f, -300.0f));
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-800.0f, 10.0f, -300.0f));
 		/*model = glm::rotate();*/
-		model = glm::scale(model, glm::vec3(7.0f));
-		staticShader.setMat4("model", model);
-		Panda.Draw(staticShader);
+		//model = glm::scale(model, glm::vec3(7.0f));
+		//staticShader.setMat4("model", model);
+		//Panda.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Pingüino 1
 		// -------------------------------------------------------------------------------------------------------------------------
 		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
-		///*model = glm::rotate();*/
-		//model = glm::scale(model, glm::vec3(1.5f));
-		//staticShader.setMat4("model", model);
-		//Pingu.Draw(staticShader);
-
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX, movPinY, movPinZ));
-		//model = glm::scale(model, glm::vec3(1.5f));
-		//staticShader.setMat4("model", model);
-		//AlaDer.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(movPinX1, movPinY1, movPinZ1));
-		model = glm::scale(model, glm::vec3(2.0f));
+		/*model = glm::rotate();*/
+		/*model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
-		Pingu1.Draw(staticShader);
+		Pingu.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Carro
@@ -615,7 +762,7 @@ int main()
 		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
 		//model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
 		//staticShader.setMat4("model", model);
-		//cabeza.Draw(staticShader);
+		//cabeza.Draw(staticShader);*/
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Caja Transparente --- Siguiente Práctica
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -692,6 +839,52 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.z--;
 
+	// Elefante
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+		movX--;
+	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+		movX++;
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		movY++;
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+		movY--;
+	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+		movZ++;
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+		movZ--;
+
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+		giroElefante--;
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+		giroElefante++;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		rotPDelanDer -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		rotPDelanDer += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		rotPDelanIzq += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		rotPDelanIzq -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		rotPTrasDer += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		rotPTrasDer -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		rotPTrasIzq -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		rotPTrasIzq += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		movTAlta += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		movTAlta -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		movTMedia += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+		movTMedia -= 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
+		movTBaja += 3.0f;
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+		movTBaja -= 3.0f;
 
 	/*if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
 		lightPosition.y++;*/
@@ -743,9 +936,6 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		movPinX = -477.0f;
 		movPinY = 3.3f;
 		movPinZ = -638.7f;
-		movPinX1 = -573.0f,
-		movPinY1 = -2.0f,
-		movPinZ1 = -565.0f;
 	}
 }
 
