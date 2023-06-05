@@ -127,7 +127,7 @@ float	incX = 0.0f,
 		rotInc = 0.0f,
 		giroMonitoInc = 0.0f;
 
-#define MAX_FRAMES 9
+#define MAX_FRAMES 30
 int i_max_steps = 60;
 int i_curr_steps = 0;
 typedef struct _frame
@@ -152,39 +152,32 @@ typedef struct _frame
 	float	movTMedia;
 	float	movTBaja;
 
-}FRAME;
+}FRAME_ELEFANT;
 
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir número en caso de tener Key guardados
-bool play = false;
-int playIndex = 0;
+FRAME_ELEFANT KeyFrame[MAX_FRAMES];
+int FrameIndexElefant = 20;			//introducir número en caso de tener Key guardados
+bool play = true;
+int playIndexElefant = 0;
 
 void saveFrame(void)
 {
 	//printf("frameindex %d\n", FrameIndex);
-	std::cout << "Frame Index = " << FrameIndex << std::endl;
-
-	KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
-
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].giroMonito = giroMonito;
+	std::cout << "Frame Index = " << FrameIndexElefant << std::endl;
 
 	// Elefante
-	KeyFrame[FrameIndex].movX = movX;
-	KeyFrame[FrameIndex].movY = movY;
-	KeyFrame[FrameIndex].movZ = movZ;
-	KeyFrame[FrameIndex].rotPDelanDer = rotPDelanDer;
-	KeyFrame[FrameIndex].rotPDelanIzq = rotPDelanIzq;
-	KeyFrame[FrameIndex].rotPTrasDer = rotPTrasDer;
-	KeyFrame[FrameIndex].rotPTrasIzq = rotPTrasIzq;
-	KeyFrame[FrameIndex].giroElefante = giroElefante;
-	KeyFrame[FrameIndex].movTAlta = movTAlta;
-	KeyFrame[FrameIndex].movTMedia = movTMedia;
-	KeyFrame[FrameIndex].movTBaja = movTBaja;
+	KeyFrame[FrameIndexElefant].movX = movX;
+	KeyFrame[FrameIndexElefant].movY = movY;
+	KeyFrame[FrameIndexElefant].movZ = movZ;
+	KeyFrame[FrameIndexElefant].rotPDelanDer = rotPDelanDer;
+	KeyFrame[FrameIndexElefant].rotPDelanIzq = rotPDelanIzq;
+	KeyFrame[FrameIndexElefant].rotPTrasDer = rotPTrasDer;
+	KeyFrame[FrameIndexElefant].rotPTrasIzq = rotPTrasIzq;
+	KeyFrame[FrameIndexElefant].giroElefante = giroElefante;
+	KeyFrame[FrameIndexElefant].movTAlta = movTAlta;
+	KeyFrame[FrameIndexElefant].movTMedia = movTMedia;
+	KeyFrame[FrameIndexElefant].movTBaja = movTBaja;
 
-	FrameIndex++;
+	FrameIndexElefant++;
 }
 
 void resetElements(void)
@@ -212,25 +205,18 @@ void resetElements(void)
 
 void interpolation(void)
 {
-	incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
-	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
-	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-
-	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
-
 	// Elefante
-	inX = (KeyFrame[playIndex + 1].movX - KeyFrame[playIndex].movX) / i_max_steps;
-	inY = (KeyFrame[playIndex + 1].movY - KeyFrame[playIndex].movY) / i_max_steps;
-	inZ = (KeyFrame[playIndex + 1].movZ - KeyFrame[playIndex].movZ) / i_max_steps;
-	incPDelanDer = (KeyFrame[playIndex + 1].rotPDelanDer - KeyFrame[playIndex].rotPDelanDer) / i_max_steps;
-	incPDelanIzq = (KeyFrame[playIndex + 1].rotPDelanIzq - KeyFrame[playIndex].rotPDelanIzq) / i_max_steps;
-	incPTrasDer = (KeyFrame[playIndex + 1].rotPTrasDer - KeyFrame[playIndex].rotPTrasDer) / i_max_steps;
-	incPTrasIzq = (KeyFrame[playIndex + 1].rotPTrasIzq - KeyFrame[playIndex].rotPTrasIzq) / i_max_steps;
-	incGiroElefante = (KeyFrame[playIndex + 1].giroElefante - KeyFrame[playIndex].giroElefante) / i_max_steps;
-	incTAlta = (KeyFrame[playIndex + 1].movTAlta - KeyFrame[playIndex].movTAlta) / i_max_steps;
-	incTMedia = (KeyFrame[playIndex + 1].movTMedia - KeyFrame[playIndex].movTMedia) / i_max_steps;
-	incTBaja = (KeyFrame[playIndex + 1].movTBaja - KeyFrame[playIndex].movTBaja) / i_max_steps;
+	inX = (KeyFrame[playIndexElefant + 1].movX - KeyFrame[playIndexElefant].movX) / i_max_steps;
+	inY = (KeyFrame[playIndexElefant + 1].movY - KeyFrame[playIndexElefant].movY) / i_max_steps;
+	inZ = (KeyFrame[playIndexElefant + 1].movZ - KeyFrame[playIndexElefant].movZ) / i_max_steps;
+	incPDelanDer = (KeyFrame[playIndexElefant + 1].rotPDelanDer - KeyFrame[playIndexElefant].rotPDelanDer) / i_max_steps;
+	incPDelanIzq = (KeyFrame[playIndexElefant + 1].rotPDelanIzq - KeyFrame[playIndexElefant].rotPDelanIzq) / i_max_steps;
+	incPTrasDer = (KeyFrame[playIndexElefant + 1].rotPTrasDer - KeyFrame[playIndexElefant].rotPTrasDer) / i_max_steps;
+	incPTrasIzq = (KeyFrame[playIndexElefant + 1].rotPTrasIzq - KeyFrame[playIndexElefant].rotPTrasIzq) / i_max_steps;
+	incGiroElefante = (KeyFrame[playIndexElefant + 1].giroElefante - KeyFrame[playIndexElefant].giroElefante) / i_max_steps;
+	incTAlta = (KeyFrame[playIndexElefant + 1].movTAlta - KeyFrame[playIndexElefant].movTAlta) / i_max_steps;
+	incTMedia = (KeyFrame[playIndexElefant + 1].movTMedia - KeyFrame[playIndexElefant].movTMedia) / i_max_steps;
+	incTBaja = (KeyFrame[playIndexElefant + 1].movTBaja - KeyFrame[playIndexElefant].movTBaja) / i_max_steps;
 }
 
 void animate(void)
@@ -249,12 +235,12 @@ void animate(void)
 	{
 		if (i_curr_steps >= i_max_steps) //end of animation between frames?
 		{
-			playIndex++;
-			if (playIndex > FrameIndex - 2)	//end of total animation?
+			playIndexElefant++;
+			if (playIndexElefant > FrameIndexElefant - 2)	//end of total animation?
 			{
 				std::cout << "Animation ended" << std::endl;
 				//printf("termina anim\n");
-				playIndex = 0;
+				playIndexElefant = 0;
 				play = false;
 			}
 			else //Next frame interpolations
@@ -273,6 +259,19 @@ void animate(void)
 
 			rotRodIzq += rotInc;
 			giroMonito += giroMonitoInc;
+
+			//Elefante
+			movX += inX;
+			movY += inY;
+			movZ += inZ;
+			rotPDelanDer += incPDelanDer;
+			rotPDelanIzq += incPDelanIzq;
+			rotPTrasDer += incPTrasDer;
+			rotPTrasIzq += incPTrasIzq;
+			giroElefante += incGiroElefante;
+			movTAlta += incTAlta;
+			movTMedia += incTMedia;
+			movTBaja += incTBaja;
 
 			i_curr_steps++;
 		}
@@ -405,6 +404,7 @@ int main()
 	ninja.initShaders(animShader.ID);*/
 
 	//Inicialización de KeyFrames
+	
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
 		KeyFrame[i].posX = 0;
@@ -426,6 +426,7 @@ int main()
 		KeyFrame[i].movTMedia = 0;
 		KeyFrame[i].movTBaja = 0;
 	}
+	
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -529,12 +530,256 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Segundo Personaje Animacion
 		// -------------------------------------------------------------------------------------------------------------------------
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.5f));	// it's a bit too big for our scene, so scale it down
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		/*ninja.Draw(animShader);*/
+		ninja.Draw(animShader);*/
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Animacion del Elefante
+		// -------------------------------------------------------------------------------------------------------------------------
+		
+		KeyFrame[0].movX = 0.000000;
+		KeyFrame[0].movY = 0.000000;
+		KeyFrame[0].movZ = 0.000000;
+		KeyFrame[0].rotPDelanDer = 0.000000;
+		KeyFrame[0].rotPDelanIzq = 0.000000;
+		KeyFrame[0].rotPTrasDer = 0.000000;
+		KeyFrame[0].rotPTrasIzq = 0.000000;
+		KeyFrame[0].giroElefante = 0.000000;
+		KeyFrame[0].movTAlta = 0.000000;
+		KeyFrame[0].movTMedia = 0.000000;
+		KeyFrame[0].movTBaja = 0.000000;
+		
+		KeyFrame[1].movX = 0.000000;
+		KeyFrame[1].movY = 0.000000;
+		KeyFrame[1].movZ = 0.000000;
+		KeyFrame[1].rotPDelanDer = 12.000000;
+		KeyFrame[1].rotPDelanIzq = -12.000000;
+		KeyFrame[1].rotPTrasDer = 12.000000;
+		KeyFrame[1].rotPTrasIzq = -12.000000;
+		KeyFrame[1].giroElefante = -17.000000;
+		KeyFrame[1].movTAlta = -15.000000;
+		KeyFrame[1].movTMedia = 0.000000;
+		KeyFrame[1].movTBaja = 0.000000;
+
+		KeyFrame[2].movX = 0.000000;
+		KeyFrame[2].movY = 0.000000;
+		KeyFrame[2].movZ = 0.000000;
+		KeyFrame[2].rotPDelanDer = -21.000000;
+		KeyFrame[2].rotPDelanIzq = 21.000000;
+		KeyFrame[2].rotPTrasDer = -21.000000;
+		KeyFrame[2].rotPTrasIzq = 21.000000;
+		KeyFrame[2].giroElefante = -76.000000;
+		KeyFrame[2].movTAlta = -15.000000;
+		KeyFrame[2].movTMedia = 0.000000;
+		KeyFrame[2].movTBaja = 0.000000;
+
+		KeyFrame[3].movX = -10.000000;
+		KeyFrame[3].movY = 0.000000;
+		KeyFrame[3].movZ = 0.000000;
+		KeyFrame[3].rotPDelanDer = -51.000000;
+		KeyFrame[3].rotPDelanIzq = 51.000000;
+		KeyFrame[3].rotPTrasDer = -51.000000;
+		KeyFrame[3].rotPTrasIzq = 51.000000;
+		KeyFrame[3].giroElefante = -76.000000;
+		KeyFrame[3].movTAlta = -66.000000;
+		KeyFrame[3].movTMedia = 0.000000;
+		KeyFrame[3].movTBaja = 0.000000;
+
+		KeyFrame[4].movX = -21.000000;
+		KeyFrame[4].movY = 0.000000;
+		KeyFrame[4].movZ = 0.000000;
+		KeyFrame[4].rotPDelanDer = 9.000000;
+		KeyFrame[4].rotPDelanIzq = -9.000000;
+		KeyFrame[4].rotPTrasDer = 9.000000;
+		KeyFrame[4].rotPTrasIzq = -9.000000;
+		KeyFrame[4].giroElefante = -76.000000;
+		KeyFrame[4].movTAlta = -114.000000;
+		KeyFrame[4].movTMedia = 0.000000;
+		KeyFrame[4].movTBaja = 0.000000;
+
+		KeyFrame[5].movX = -38.000000;
+		KeyFrame[5].movY = 0.000000;
+		KeyFrame[5].movZ = 0.000000;
+		KeyFrame[5].rotPDelanDer = -42.000000;
+		KeyFrame[5].rotPDelanIzq = 42.000000;
+		KeyFrame[5].rotPTrasDer = -42.000000;
+		KeyFrame[5].rotPTrasIzq = 42.000000;
+		KeyFrame[5].giroElefante = -76.000000;
+		KeyFrame[5].movTAlta = -114.000000;
+		KeyFrame[5].movTMedia = 0.000000;
+		KeyFrame[5].movTBaja = 0.000000;
+
+		KeyFrame[6].movX = -58.000000;
+		KeyFrame[6].movY = 0.000000;
+		KeyFrame[6].movZ = 0.000000;
+		KeyFrame[6].rotPDelanDer = 15.000000;
+		KeyFrame[6].rotPDelanIzq = -15.000000;
+		KeyFrame[6].rotPTrasDer = 15.000000;
+		KeyFrame[6].rotPTrasIzq = -15.000000;
+		KeyFrame[6].giroElefante = -48.000000;
+		KeyFrame[6].movTAlta = -114.000000;
+		KeyFrame[6].movTMedia = 0.000000;
+		KeyFrame[6].movTBaja = 36.000000;
+
+		KeyFrame[7].movX = -68.000000;
+		KeyFrame[7].movY = 0.000000;
+		KeyFrame[7].movZ = 9.000000;
+		KeyFrame[7].rotPDelanDer = -33.000000;
+		KeyFrame[7].rotPDelanIzq = 33.000000;
+		KeyFrame[7].rotPTrasDer = -33.000000;
+		KeyFrame[7].rotPTrasIzq = 33.000000;
+		KeyFrame[7].giroElefante = -27.000000;
+		KeyFrame[7].movTAlta = -114.000000;
+		KeyFrame[7].movTMedia = 0.000000;
+		KeyFrame[7].movTBaja = 36.000000;
+
+		KeyFrame[8].movX = -68.000000;
+		KeyFrame[8].movY = 0.000000;
+		KeyFrame[8].movZ = 18.000000;
+		KeyFrame[8].rotPDelanDer = 12.000000;
+		KeyFrame[8].rotPDelanIzq = -12.000000;
+		KeyFrame[8].rotPTrasDer = 12.000000;
+		KeyFrame[8].rotPTrasIzq = -12.000000;
+		KeyFrame[8].giroElefante = 3.000000;
+		KeyFrame[8].movTAlta = -114.000000;
+		KeyFrame[8].movTMedia = 0.000000;
+		KeyFrame[8].movTBaja = 36.000000;
+
+		KeyFrame[9].movX = -68.000000;
+		KeyFrame[9].movY = 0.000000;
+		KeyFrame[9].movZ = 18.000000;
+		KeyFrame[9].rotPDelanDer = 12.000000;
+		KeyFrame[9].rotPDelanIzq = -12.000000;
+		KeyFrame[9].rotPTrasDer = 12.000000;
+		KeyFrame[9].rotPTrasIzq = -12.000000;
+		KeyFrame[9].giroElefante = 23.000000;
+		KeyFrame[9].movTAlta = -114.000000;
+		KeyFrame[9].movTMedia = 0.000000;
+		KeyFrame[9].movTBaja = -39.000000;
+
+		KeyFrame[10].movX = -55.000000;
+		KeyFrame[10].movY = -3.000000;
+		KeyFrame[10].movZ = 22.000000;
+		KeyFrame[10].rotPDelanDer = -27.000000;
+		KeyFrame[10].rotPDelanIzq = 27.000000;
+		KeyFrame[10].rotPTrasDer = -27.000000;
+		KeyFrame[10].rotPTrasIzq = 27.000000;
+		KeyFrame[10].giroElefante = 52.000000;
+		KeyFrame[10].movTAlta = -114.000000;
+		KeyFrame[10].movTMedia = 0.000000;
+		KeyFrame[10].movTBaja = -39.000000;
+
+		KeyFrame[11].movX = -55.000000;
+		KeyFrame[11].movY = -3.000000;
+		KeyFrame[11].movZ = 22.000000;
+		KeyFrame[11].rotPDelanDer = -51.000000;
+		KeyFrame[11].rotPDelanIzq = 51.000000;
+		KeyFrame[11].rotPTrasDer = -51.000000;
+		KeyFrame[11].rotPTrasIzq = 51.000000;
+		KeyFrame[11].giroElefante = 71.000000;
+		KeyFrame[11].movTAlta = -57.000000;
+		KeyFrame[11].movTMedia = 0.000000;
+		KeyFrame[11].movTBaja = -39.000000;
+
+		KeyFrame[12].movX = -33.000000;
+		KeyFrame[12].movY = -3.000000;
+		KeyFrame[12].movZ = 22.000000;
+		KeyFrame[12].rotPDelanDer = 9.000000;
+		KeyFrame[12].rotPDelanIzq = -9.000000;
+		KeyFrame[12].rotPTrasDer = 9.000000;
+		KeyFrame[12].rotPTrasIzq = -9.000000;
+		KeyFrame[12].giroElefante = 71.000000;
+		KeyFrame[12].movTAlta = 3.000000;
+		KeyFrame[12].movTMedia = 0.000000;
+		KeyFrame[12].movTBaja = -39.000000;
+
+		KeyFrame[13].movX = -10.000000;
+		KeyFrame[13].movY = -5.000000;
+		KeyFrame[13].movZ = 22.000000;
+		KeyFrame[13].rotPDelanDer = -42.000000;
+		KeyFrame[13].rotPDelanIzq = 42.000000;
+		KeyFrame[13].rotPTrasDer = -42.000000;
+		KeyFrame[13].rotPTrasIzq = 42.000000;
+		KeyFrame[13].giroElefante = 82.000000;
+		KeyFrame[13].movTAlta = 3.000000;
+		KeyFrame[13].movTMedia = 0.000000;
+		KeyFrame[13].movTBaja = -39.000000;
+
+		KeyFrame[14].movX = -4.000000;
+		KeyFrame[14].movY = -5.000000;
+		KeyFrame[14].movZ = 22.000000;
+		KeyFrame[14].rotPDelanDer = 6.000000;
+		KeyFrame[14].rotPDelanIzq = -6.000000;
+		KeyFrame[14].rotPTrasDer = 6.000000;
+		KeyFrame[14].rotPTrasIzq = -6.000000;
+		KeyFrame[14].giroElefante = 82.000000;
+		KeyFrame[14].movTAlta = 3.000000;
+		KeyFrame[14].movTMedia = 0.000000;
+		KeyFrame[14].movTBaja = 72.000000;
+
+		KeyFrame[15].movX = 23.000000;
+		KeyFrame[15].movY = -8.000000;
+		KeyFrame[15].movZ = 22.000000;
+		KeyFrame[15].rotPDelanDer = -45.000000;
+		KeyFrame[15].rotPDelanIzq = 45.000000;
+		KeyFrame[15].rotPTrasDer = -45.000000;
+		KeyFrame[15].rotPTrasIzq = 45.000000;
+		KeyFrame[15].giroElefante = 82.000000;
+		KeyFrame[15].movTAlta = -51.000000;
+		KeyFrame[15].movTMedia = 0.000000;
+		KeyFrame[15].movTBaja = 72.000000;
+
+		KeyFrame[16].movX = 48.000000;
+		KeyFrame[16].movY = -10.000000;
+		KeyFrame[16].movZ = 22.000000;
+		KeyFrame[16].rotPDelanDer = 12.000000;
+		KeyFrame[16].rotPDelanIzq = -12.000000;
+		KeyFrame[16].rotPTrasDer = 12.000000;
+		KeyFrame[16].rotPTrasIzq = -12.000000;
+		KeyFrame[16].giroElefante = 82.000000;
+		KeyFrame[16].movTAlta = -51.000000;
+		KeyFrame[16].movTMedia = 0.000000;
+		KeyFrame[16].movTBaja = 72.000000;
+
+		KeyFrame[17].movX = 64.000000;
+		KeyFrame[17].movY = -13.000000;
+		KeyFrame[17].movZ = 11.000000;
+		KeyFrame[17].rotPDelanDer = -27.000000;
+		KeyFrame[17].rotPDelanIzq = 27.000000;
+		KeyFrame[17].rotPTrasDer = -27.000000;
+		KeyFrame[17].rotPTrasIzq = 27.000000;
+		KeyFrame[17].giroElefante = 114.000000;
+		KeyFrame[17].movTAlta = -93.000000;
+		KeyFrame[17].movTMedia = 0.000000;
+		KeyFrame[17].movTBaja = 72.000000;
+
+		KeyFrame[18].movX = 79.000000;
+		KeyFrame[18].movY = -13.000000;
+		KeyFrame[18].movZ = -7.000000;
+		KeyFrame[18].rotPDelanDer = 9.000000;
+		KeyFrame[18].rotPDelanIzq = -9.000000;
+		KeyFrame[18].rotPTrasDer = 9.000000;
+		KeyFrame[18].rotPTrasIzq = -9.000000;
+		KeyFrame[18].giroElefante = 127.000000;
+		KeyFrame[18].movTAlta = -93.000000;
+		KeyFrame[18].movTMedia = 0.000000;
+		KeyFrame[18].movTBaja = -48.000000;
+
+		KeyFrame[19].movX = 0.000000;
+		KeyFrame[19].movY = 0.000000;
+		KeyFrame[19].movZ = 0.000000;
+		KeyFrame[19].rotPDelanDer = 0.000000;
+		KeyFrame[19].rotPDelanIzq = 0.000000;
+		KeyFrame[19].rotPTrasDer = 0.000000;
+		KeyFrame[19].rotPTrasIzq = 0.000000;
+		KeyFrame[19].giroElefante = 0.000000;
+		KeyFrame[19].movTAlta = 0.000000;
+		KeyFrame[19].movTMedia = 0.000000;
+		KeyFrame[19].movTBaja = 0.000000;
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                               Escenario
@@ -566,7 +811,7 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 1.0f, -500.0f));
 		model = glm::translate(model, glm::vec3(movX, movY, movZ));
 		tmp = model = glm::rotate(model, glm::radians(giroElefante), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::scale(model, glm::vec3(8.0f));
 		staticShader.setMat4("model", model);
 		cuerpo_Elefante.Draw(staticShader);
 		
@@ -579,17 +824,17 @@ int main()
 		trompa_Alta.Draw(staticShader);
 
 		// Trompa Media
-		model = glm::translate(tmp2, glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
-		model = glm::translate(model, glm::vec3(-18.917f, -10.09f, 156.14f));
+		model = glm::translate(tmp2, glm::vec3(2.5f, -20.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		tmp3 = model = glm::rotate(model, glm::radians(movTMedia), glm::vec3(1.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		trompa_Media.Draw(staticShader);
 
 		// Trompa Baja
-		model = glm::translate(tmp3, glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
-		model = glm::translate(model, glm::vec3(-17.562f, -71.416f, 168.197f));
+		model = glm::translate(tmp3, glm::vec3(0.0f, -52.0f, 12.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(movTBaja), glm::vec3(1.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		trompa_Baja.Draw(staticShader);
@@ -677,8 +922,6 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		staticShader.setMat4("model", model);
 		Carro.Draw(staticShader);
-
-
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
@@ -897,7 +1140,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 	{
-		if (play == false && (FrameIndex > 1))
+		if (play == false && (FrameIndexElefant > 1))
 		{
 			std::cout << "Play animation" << std::endl;
 			resetElements();
@@ -905,7 +1148,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			interpolation();
 
 			play = true;
-			playIndex = 0;
+			playIndexElefant = 0;
 			i_curr_steps = 0;
 		}
 		else
@@ -913,12 +1156,28 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			play = false;
 			std::cout << "Not enough Key Frames" << std::endl;
 		}
+		/*
+		for (int i = 0; i < FrameIndexElefant; i++)
+		{
+			printf("KeyFrame[i].movX = %f;\n", KeyFrame[i].movX);
+			printf("KeyFrame[i].movY = %f;\n", KeyFrame[i].movY);
+			printf("KeyFrame[i].movZ = %f;\n", KeyFrame[i].movZ);
+			printf("KeyFrame[i].rotPDelanDer = %f;\n", KeyFrame[i].rotPDelanDer);
+			printf("KeyFrame[i].rotPDelanIzq = %f;\n", KeyFrame[i].rotPDelanIzq);
+			printf("KeyFrame[i].rotPTrasDer = %f;\n", KeyFrame[i].rotPTrasDer);
+			printf("KeyFrame[i].rotPTrasIzq = %f;\n", KeyFrame[i].rotPTrasIzq);
+			printf("KeyFrame[i].giroElefante = %f;\n", KeyFrame[i].giroElefante);
+			printf("KeyFrame[i].movTAlta = %f;\n", KeyFrame[i].movTAlta);
+			printf("KeyFrame[i].movTMedia = %f;\n", KeyFrame[i].movTMedia);
+			printf("KeyFrame[i].movTBaja = %f;\n", KeyFrame[i].movTBaja);
+		}
+		*/
 	}
 
 	//To Save a KeyFrame
 	if (key == GLFW_KEY_L && action == GLFW_PRESS)
 	{
-		if (FrameIndex < MAX_FRAMES)
+		if (FrameIndexElefant < MAX_FRAMES)
 		{
 			saveFrame();
 		}
