@@ -84,11 +84,12 @@ bool	animacion = true,
 //Variables animación pingüino
 bool recorridoPingu1 = false;
 bool recorridoPingu2 = false;
+bool recorridoPingu3 = false;
 
 float	movPinX1 = -592.5f,
 		movPinY1 = 0.4f,
 		movPinZ1 = -554.5f, 
-		movAlaDerX = -563.4f,
+		movAlaDerX = -563.5f,
 		movAlaDerY = 1.6f,
 		movAlaDerZ = -575.5f,
 		rotAlaDer = 0.0f,
@@ -213,32 +214,42 @@ void animate(void)
 	if (animacion)
 	{
 		if (recorridoPingu1 == true) {
-			movAlaDerY += 0.3f;
-			if (movAlaDerY >= 2.0f) {
-				movAlaDerY -= 0.2f;
+			if (movAlaDerY <= 1.6f) {
+				movAlaDerY += 0.1f;
+				/*recorridoPingu1 = false;
+				recorridoPingu2 = true;*/
 			}
-			/*recorridoPingu1 = false;*/
-			else {
-				recorridoPingu1 = false;
-				/*rotAlaDer = -45.0f;*/
-			}
-			recorridoPingu2 = true;
+			recorridoPingu1 = false;
+			recorridoPingu3 = true;
 		}
 
-		if (recorridoPingu2 == true) {
+		//if (recorridoPingu2 == true) {
+		//	if (movAlaDerY <= 1.9f) {
+		//		movAlaDerY -= 0.2f;
+		//		/*recorridoPingu2 = false;
+		//		recorridoPingu3 = true;*/
+		//	}
+		//	recorridoPingu2 = false;
+		//	recorridoPingu3 = true;
+		//}
+
+		if (recorridoPingu3 == true) {
 			movPinZ1 += 0.1f;
 			movAlaDerZ += 0.1f;
+
 			movAlaIzqZ += 0.1f;
+
+			movAlaDerY += 0.2f;
 			if (movPinZ1 <= -551.5f) { 
 				movPinZ1 += 0.01f;
 				movAlaDerZ += 0.01f;
 				movAlaIzqZ += 0.01f;
 			} 
 			else {
-				recorridoPingu2 = false;
+				recorridoPingu3 = false;
 			}
 			movPinY1 = 2 * -sin(movPinZ1);
-			movAlaDerY = 2 * -sin(movPinZ1);
+			movAlaDerY = 0.9 * -sin(-0.7+movPinZ1);
 			movAlaIzqY = 2 * -sin(movPinZ1);
 		}
 	}
@@ -689,6 +700,7 @@ int main()
 	glfwTerminate();
 	return 0;
 }
+
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
