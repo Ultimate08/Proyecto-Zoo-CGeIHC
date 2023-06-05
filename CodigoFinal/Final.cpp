@@ -216,6 +216,7 @@ void animate(void)
 		if (recorridoPingu1 == true) {
 			if (movAlaDerY <= 1.6f) {
 				movAlaDerY += 0.1f;
+				movAlaIzqY += 0.2f;
 				/*recorridoPingu1 = false;
 				recorridoPingu2 = true;*/
 			}
@@ -236,7 +237,6 @@ void animate(void)
 		if (recorridoPingu3 == true) {
 			movPinZ1 += 0.1f;
 			movAlaDerZ += 0.1f;
-
 			movAlaIzqZ += 0.1f;
 
 			movAlaDerY += 0.2f;
@@ -250,7 +250,7 @@ void animate(void)
 			}
 			movPinY1 = 2 * -sin(movPinZ1);
 			movAlaDerY = 0.9 * -sin(-0.7+movPinZ1);
-			movAlaIzqY = 2 * -sin(movPinZ1);
+			movAlaIzqY = 0.9 * -sin(-0.7+movPinZ1);
 		}
 	}
 }
