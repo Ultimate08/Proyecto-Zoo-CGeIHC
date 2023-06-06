@@ -337,7 +337,7 @@ int main()
 
 	// load models
 	// -----------
-	Model piso("resources/objects/piso/piso.obj");
+	Model piso("resources/objects/piso/piso.obj");	
 	Model Elefante("resources/objects/Elefante/elefante.obj");
 	Model Base("resources/objects/ZooBase/Base.obj");
 	Model Agua("resources/objects/ZooBase/Sea.obj");
@@ -347,8 +347,6 @@ int main()
 	Model Oso("resources/objects/Oso/Bear.obj");
 	Model Panda("resources/objects/Panda/OsoPanda.obj");
 	Model Carro("resources/objects/jeep/jeep.obj");
-	/*Model Pingu("resources/objects/Pingu/Pingu.obj");
-	Model AlaDer("resources/objects/Pingu/Ala_der.obj");*/
 	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
 	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
 	Model AlaIzq("resources/objects/Pingu/Ala_izq.obj");
@@ -493,6 +491,11 @@ int main()
 		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
 		Base.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-473.0f, 2.0f, -635.0f));
+		model = glm::scale(model, glm::vec3(0.50f));
+		staticShader.setMat4("model", model);
+		Agua.Draw(staticShader);
 
 
 
