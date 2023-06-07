@@ -363,7 +363,6 @@ int main()
 		posCocoZ = stof(strC);
 		getline(AnimCoco, strC);
 		giroCoco = stof(strC);
-
 		saveFrameC();
 
 		indC++;
