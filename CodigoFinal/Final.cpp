@@ -492,8 +492,9 @@ int main()
 		staticShader.setMat4("model", model);
 		Base.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-473.0f, 2.0f, -635.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-465.7f, 2.2f, -634.0f));
 		model = glm::scale(model, glm::vec3(0.50f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Agua.Draw(staticShader);
 
@@ -513,7 +514,6 @@ int main()
 		// Cebra
 		// -------------------------------------------------------------------------------------------------------------------------
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-510.0f, 0.0f, -150.0f));
-		/*model = glm::rotate();*/
 		model = glm::scale(model, glm::vec3(3.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
