@@ -731,7 +731,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	}
 
 	//To play KeyFrame animation 
-	if (key == GLFW_KEY_P && action == GLFW_PRESS)
+	if (key == GLFW_KEY_K && action == GLFW_PRESS)
 	{
 		if (play == false && (FrameIndexCocodrilo > 1))
 		{
