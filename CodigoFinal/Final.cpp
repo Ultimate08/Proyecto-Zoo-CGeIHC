@@ -98,29 +98,45 @@ float	movPinX1 = -592.5f,
 		movAlaIzqZ = -575.5f,
 		rotAlaIzq = 0.0f;
 
-//Keyframes (Manipulación y dibujo)
-float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f,
-		giroMonito = 0.0f;
-float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotInc = 0.0f,
-		giroMonitoInc = 0.0f;
+//Keyframes (Cocodrilo)
+float	posCocoX = 80.0f;
+float	incXcoco = 0.0f;
+float	posCocoY = 0.0f;
+float	incYcoco = 0.0f;
+float	posCocoZ = -515.0f;
+float	incZcoco = 0.0f;
+float	giroCoco = 0.0f;
+float	giroCocoInc = 0.0f;
+
+////Keyframes (Manipulación y dibujo)
+//float	posX = 0.0f,
+//		posY = 0.0f,
+//		posZ = 0.0f,
+//		rotRodIzq = 0.0f,
+//		giroMonito = 0.0f;
+//float	incX = 0.0f,
+//		incY = 0.0f,
+//		incZ = 0.0f,
+//		rotInc = 0.0f,
+//		giroMonitoInc = 0.0f;
 
 #define MAX_FRAMES 9
 int i_max_steps = 60;
 int i_curr_steps = 0;
 typedef struct _frame
 {
-	//Variables para GUARDAR Key Frames
-	float posX;		//Variable para PosicionX
-	float posY;		//Variable para PosicionY
-	float posZ;		//Variable para PosicionZ
-	float rotRodIzq;
-	float giroMonito;
+	////Variables para GUARDAR Key Frames
+	//float posX;		//Variable para PosicionX
+	//float posY;		//Variable para PosicionY
+	//float posZ;		//Variable para PosicionZ
+	//float rotRodIzq;
+	//float giroMonito;
+
+	//Variables para guardar KeyFrames Cocodrilo
+	float posCocoX;
+	float posCocoY;
+	float posCocoZ;
+	float giroCoco;
 
 }FRAME;
 
@@ -134,34 +150,52 @@ void saveFrame(void)
 	//printf("frameindex %d\n", FrameIndex);
 	std::cout << "Frame Index = " << FrameIndex << std::endl;
 
-	KeyFrame[FrameIndex].posX = posX;
+	/*KeyFrame[FrameIndex].posX = posX;
 	KeyFrame[FrameIndex].posY = posY;
 	KeyFrame[FrameIndex].posZ = posZ;
 
 	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].giroMonito = giroMonito;
+	KeyFrame[FrameIndex].giroMonito = giroMonito;*/
+
+
+	KeyFrame[FrameIndex].posCocoX = posCocoX;
+	KeyFrame[FrameIndex].posCocoY = posCocoY;
+	KeyFrame[FrameIndex].posCocoZ = posCocoZ;
+	KeyFrame[FrameIndex].giroCoco = giroCoco;
+
+
 
 	FrameIndex++;
 }
 
 void resetElements(void)
 {
-	posX = KeyFrame[0].posX;
+	/*posX = KeyFrame[0].posX;
 	posY = KeyFrame[0].posY;
 	posZ = KeyFrame[0].posZ;
 
 	rotRodIzq = KeyFrame[0].rotRodIzq;
-	giroMonito = KeyFrame[0].giroMonito;
+	giroMonito = KeyFrame[0].giroMonito;*/
+
+	posCocoX = KeyFrame[0].posCocoX;
+	posCocoY = KeyFrame[0].posCocoY;
+	posCocoZ = KeyFrame[0].posCocoZ;
+	giroCoco = KeyFrame[0].giroCoco;
 }
 
 void interpolation(void)
 {
-	incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
+	/*incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
 	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
 	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
 
 	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
+	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;*/
+
+	incXcoco = (KeyFrame[playIndex + 1].posCocoX - KeyFrame[playIndex].posCocoX) / i_max_steps;
+	incYcoco = (KeyFrame[playIndex + 1].posCocoY - KeyFrame[playIndex].posCocoY) / i_max_steps;
+	incZcoco = (KeyFrame[playIndex + 1].posCocoZ - KeyFrame[playIndex].posCocoZ) / i_max_steps;
+	giroCocoInc = (KeyFrame[playIndex + 1].giroCoco - KeyFrame[playIndex].giroCoco) / i_max_steps;
 
 }
 
@@ -199,12 +233,17 @@ void animate(void)
 		else
 		{
 			//Draw animation
-			posX += incX;
+			/*posX += incX;
 			posY += incY;
 			posZ += incZ;
 
 			rotRodIzq += rotInc;
-			giroMonito += giroMonitoInc;
+			giroMonito += giroMonitoInc;*/
+
+			posCocoX += incXcoco;
+			posCocoZ += incZcoco;
+			giroCoco += giroCocoInc;
+
 
 			i_curr_steps++;
 		}
@@ -360,11 +399,17 @@ int main()
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
-		KeyFrame[i].posX = 0;
+		/*KeyFrame[i].posX = 0;
 		KeyFrame[i].posY = 0;
 		KeyFrame[i].posZ = 0;
 		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].giroMonito = 0;
+		KeyFrame[i].giroMonito = 0;*/
+
+		KeyFrame[i].posCocoX = 0;
+		KeyFrame[i].posCocoY = 0;
+		KeyFrame[i].posCocoZ = 0;
+		KeyFrame[i].giroCoco = 0;
+
 	}
 
 	// draw in wireframe
@@ -440,39 +485,6 @@ int main()
 		glm::vec3 lightColor = glm::vec3(0.6f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
-		
-
-		//// -------------------------------------------------------------------------------------------------------------------------
-		//// Personaje Animacion
-		//// -------------------------------------------------------------------------------------------------------------------------
-		////Remember to activate the shader with the animation
-		//animShader.use();
-		//animShader.setMat4("projection", projection);
-		//animShader.setMat4("view", view);
-	
-		//animShader.setVec3("material.specular", glm::vec3(0.5f));
-		//animShader.setFloat("material.shininess", 32.0f);
-		//animShader.setVec3("light.ambient", ambientColor);
-		//animShader.setVec3("light.diffuse", diffuseColor);
-		//animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-		//animShader.setVec3("light.direction", lightDirection);
-		//animShader.setVec3("viewPos", camera.Position);
-
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//animShader.setMat4("model", model);
-		///*animacionPersonaje.Draw(animShader);*/
-
-		//// -------------------------------------------------------------------------------------------------------------------------
-		//// Segundo Personaje Animacion
-		//// -------------------------------------------------------------------------------------------------------------------------
-
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-350.3f, 1.75f, -310.0f)); // translate it down so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.09f));	// it's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//animShader.setMat4("model", model);
-		////nina.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                               Escenario
@@ -529,8 +541,10 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Cocodilo
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(80.0f, -2.0f, -510.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(posCocoX, posCocoY, posCocoZ));
 		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		tmp = model = glm::rotate(model, glm::radians(giroCoco), glm::vec3(0.0f, 1.0f, 0.0));
 		staticShader.setMat4("model", model);
 		Cocodrilo.Draw(staticShader);
 
@@ -726,23 +740,25 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
-	//To Configure Model
+	
+	//To Configure Model: Cocodrilo
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posZ++;
+		posCocoZ++;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posZ--;
+		posCocoZ--;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		posX--;
+		posCocoX--;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		posX++;
+		posCocoX++;
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		rotRodIzq--;
+		posCocoY--;
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		rotRodIzq++;
+		posCocoY++;
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		giroMonito--;
+		giroCoco--;
 	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-		giroMonito++;
+		giroCoco++;
+
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		lightPosition.z++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
