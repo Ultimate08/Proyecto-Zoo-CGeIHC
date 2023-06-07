@@ -32,5 +32,17 @@
     <None Include="shaders\shader_projection.vs">
       <Filter>Archivos de recursos</Filter>
     </None>
+    <None Include="shaders\anim.frag">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="shaders\anim.vs">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="shaders\lamp2.frag">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="shaders\lamp2.vs">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>

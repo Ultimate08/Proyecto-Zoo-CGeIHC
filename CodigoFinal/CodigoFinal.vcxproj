@@ -137,6 +137,10 @@
     <ClCompile Include="glad.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\anim.frag" />
+    <None Include="shaders\anim.vs" />
+    <None Include="shaders\lamp2.frag" />
+    <None Include="shaders\lamp2.vs" />
     <None Include="shaders\shader_Lights_mod.fs" />
     <None Include="shaders\shader_projection.fs" />
     <None Include="shaders\shader_projection.vs" />

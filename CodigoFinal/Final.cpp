@@ -341,6 +341,7 @@ int main()
 	Model Elefante("resources/objects/Elefante/elefante.obj");
 	Model Base("resources/objects/ZooBase/Base.obj");
 	Model Agua("resources/objects/ZooBase/Sea.obj");
+	Model Iglu("resources/objects/ZooBase/iglu.obj");
 	Model Cebra("resources/objects/Cebra/cebra.obj");
 	Model Cocodrilo("resources/objects/Cocodrilo/Cocodrilo.obj");
 	Model Leon("resources/objects/Leon/Leon.obj");
@@ -441,37 +442,37 @@ int main()
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
 		
 
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje Animacion
-		// -------------------------------------------------------------------------------------------------------------------------
-		//Remember to activate the shader with the animation
-		animShader.use();
-		animShader.setMat4("projection", projection);
-		animShader.setMat4("view", view);
+		//// -------------------------------------------------------------------------------------------------------------------------
+		//// Personaje Animacion
+		//// -------------------------------------------------------------------------------------------------------------------------
+		////Remember to activate the shader with the animation
+		//animShader.use();
+		//animShader.setMat4("projection", projection);
+		//animShader.setMat4("view", view);
 	
-		animShader.setVec3("material.specular", glm::vec3(0.5f));
-		animShader.setFloat("material.shininess", 32.0f);
-		animShader.setVec3("light.ambient", ambientColor);
-		animShader.setVec3("light.diffuse", diffuseColor);
-		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-		animShader.setVec3("light.direction", lightDirection);
-		animShader.setVec3("viewPos", camera.Position);
+		//animShader.setVec3("material.specular", glm::vec3(0.5f));
+		//animShader.setFloat("material.shininess", 32.0f);
+		//animShader.setVec3("light.ambient", ambientColor);
+		//animShader.setVec3("light.diffuse", diffuseColor);
+		//animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+		//animShader.setVec3("light.direction", lightDirection);
+		//animShader.setVec3("viewPos", camera.Position);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", model);
-		/*animacionPersonaje.Draw(animShader);*/
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//animShader.setMat4("model", model);
+		///*animacionPersonaje.Draw(animShader);*/
 
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Segundo Personaje Animacion
-		// -------------------------------------------------------------------------------------------------------------------------
+		//// -------------------------------------------------------------------------------------------------------------------------
+		//// Segundo Personaje Animacion
+		//// -------------------------------------------------------------------------------------------------------------------------
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-350.3f, 1.75f, -310.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.09f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", model);
-		nina.Draw(animShader);
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-350.3f, 1.75f, -310.0f)); // translate it down so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.09f));	// it's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//animShader.setMat4("model", model);
+		////nina.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                               Escenario
@@ -480,11 +481,11 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-20.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
-		staticShader.setMat4("model", model);
-		/*piso.Draw(staticShader);*/
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(-20.0f, -1.75f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.2f));
+		//staticShader.setMat4("model", model);
+		///*piso.Draw(staticShader);*/
 
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, -1.0f, -100.0f));
@@ -497,6 +498,12 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Agua.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-490.0f, 2.0f, -600.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		Iglu.Draw(staticShader);
 
 
 
