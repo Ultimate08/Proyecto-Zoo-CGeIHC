@@ -94,6 +94,16 @@ float	movPinX = -477.0f,
 		movPinY1 = -2.0f,
 		movPinZ1 = -565.0f;
 
+//Variables recorrido de la mujer en la fuente
+float	WposX = -455.0f,
+		WposZ = -270.0f,
+		Wgiro = 180.0f,
+		WDposX = -100.0f,
+		WDgiro = 270.0f;
+int		Wreco = 0,
+		camina = 0;
+bool	Wanimation = false;
+
 // Variables para la animación de la cebra
 ifstream AniZebra;
 string strZ;
@@ -282,15 +292,19 @@ void interpolationJ(void)
 
 void animate(void)
 {
-	lightPosition.x = 150.0f * cos(myVariable);
-	lightPosition.z = 150.0f * sin(myVariable);
-	myVariable += 0.05f;
+	if (camina == 1 && WDposX == -100) {
+		camina = 0;
+		WDgiro = 270.0f;
+	}else if (camina == 0 && WDposX > -300) {
+		WDposX -= 0.25f;
+	} else if (camina == 0 && WDposX == -300) {
+		camina = 1;
+		WDgiro = 90.0f;
+	} else if (camina == 1 && WDposX < -100) {
+		WDposX += 0.25f;
+	}
 
 
-	lightDiff.x = 1.0f * cos(myVariable);
-	lightDiff.z = 1.0f * sin(myVariable);
-	myvariableDiff += 0.09f;
-	 
 
 	if (playZ)
 	{
@@ -376,6 +390,32 @@ void animate(void)
 				recorridoPingu = false;
 			}
 			movPinY1 = 4 * cos(movPinZ1);
+		}
+	}
+
+	//Mujer
+
+	if (Wanimation) {
+		if (Wreco == 0 && WposZ > -390.0f) {
+			WposZ -= 0.5f;
+		}else if (WposZ == -390.0f && Wreco == 0) {
+			Wreco = 1;
+			Wgiro = 90.0f;
+		}else if (Wreco == 1 && WposX < -335.0f) {
+			WposX += 0.5f;
+		}else if (WposX == -335.0f && Wreco == 1) {
+			Wreco = 2;
+			Wgiro = 0.0f;
+		}else if (Wreco == 2 && WposZ < -270.0f) {
+			WposZ += 0.5f;
+		}else if (WposZ == -270.0f && Wreco == 2) {
+			Wreco = 3;
+			Wgiro = 270.0f;
+		}else if (Wreco == 3 && WposX > -455.0f) {
+			WposX -= 0.5f;
+		}else if (WposX == -455.0f && Wreco == 3) {
+			Wreco = 0;
+			Wgiro = 180.0f;
 		}
 	}
 }
@@ -474,7 +514,12 @@ int main()
 	Model AlaDer("resources/objects/Pingu/Ala_der.obj");
 	Model Pingu1("resources/objects/Pingu/Pingu01.obj");
 	Model boy6("resources/objects/Eduardo/Kids/Boy6.obj");
+	Model girl6("resources/objects/Eduardo/Kids/girl6.obj");
+	Model chico("resources/objects/Eduardo/Kids/chico.obj");
+	Model chica("resources/objects/Eduardo/Kids/chica.obj");
 	Model man("resources//objects/Eduardo/Man/ManCasual3.obj");
+	Model man2("resources//objects/Eduardo/Man/hombre.obj");
+	Model woman("resources/objects/Eduardo/Woman/mujer.obj");
 
 	// Carga de modelos para la cebra
 	Model Zcuerpo("resources/objects/Zebra/Zcuerpo.obj");
@@ -681,9 +726,9 @@ int main()
 		// Mujer de Vestido
 		// -------------------------------------------------------------------------------------------------------------------------
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-700.0f, 1.75f, -350.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.05f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(WDposX, 0.05f, -200.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(WDgiro), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		womanD.Draw(animShader);
 
@@ -691,9 +736,9 @@ int main()
 		// Mujer Casual
 		// -------------------------------------------------------------------------------------------------------------------------
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-450.0f, 1.75f, -350.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.05f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(WposX, 0.05f, WposZ)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.075f));	// it's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(Wgiro), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		womanC.Draw(animShader);
 
@@ -844,23 +889,54 @@ int main()
 		Panda.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Hombre
+		// Personas
 		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, 1.75f, -595.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -1.0f, -575.0f));
 		model = glm::rotate(model, glm::radians(315.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.15f));
 		staticShader.setMat4("model", model);
 		man.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -1.0f, -190.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		man2.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, -1.0f, -580.0f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		woman.Draw(staticShader);
+
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Niño
+		// Niños
 		// -------------------------------------------------------------------------------------------------------------------------
 		
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(25.0f, 1.75f, -600.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -580.0f));
 		model = glm::rotate(model, glm::radians(315.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.15f));
 		staticShader.setMat4("model", model);
 		boy6.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, -1.0f, -550.0f));
+		model = glm::rotate(model, glm::radians(60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		girl6.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-530.0f, -1.0f, -250.0f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		chico.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-730.0f, -1.0f, -350.0f));
+		model = glm::rotate(model, glm::radians(300.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		chica.Draw(staticShader);
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Pingüino 1
@@ -914,68 +990,6 @@ int main()
 		staticShader.setMat4("model", model);
 		llanta.Draw(staticShader);	//Izq trasera
 
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje
-		// -------------------------------------------------------------------------------------------------------------------------
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//tmp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0));
-		//staticShader.setMat4("model", model);
-		//torso.Draw(staticShader);
-
-		////Pierna Der
-		//model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		//model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		//staticShader.setMat4("model", model);
-		//piernaDer.Draw(staticShader);
-
-		////Pie Der
-		//model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		//staticShader.setMat4("model", model);
-		//botaDer.Draw(staticShader);
-
-		////Pierna Izq
-		//model = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//staticShader.setMat4("model", model);
-		//piernaIzq.Draw(staticShader);
-
-		////Pie Iz
-		//model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		//staticShader.setMat4("model", model);
-		//botaDer.Draw(staticShader);	//Izq trase
-
-		////Brazo derecho
-		//model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		//model = glm::translate(model, glm::vec3(-0.75f, 2.5f, 0));
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//staticShader.setMat4("model", model);
-		//brazoDer.Draw(staticShader);
-
-		////Brazo izquierdo
-		//model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		//model = glm::translate(model, glm::vec3(0.75f, 2.5f, 0));
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		//staticShader.setMat4("model", model);
-		//brazoIzq.Draw(staticShader);
-
-		////Cabeza
-		//model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		//model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
-		//staticShader.setMat4("model", model);
-		//cabeza.Draw(staticShader);
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Caja Transparente --- Siguiente Práctica
-		// -------------------------------------------------------------------------------------------------------------------------
-		/*glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
-		staticShader.setMat4("model", model);
-		cubo.Draw(staticShader);
-		glEnable(GL_BLEND);*/
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -1103,6 +1117,11 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			std::cout << "Not enough Key Frames" << std::endl;
 		}
 	}
+
+	//Play para la animación de la mujer caminando
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+		Wanimation ^= true;
+
 
 	//Salto Pingüino
 	if (key == GLFW_KEY_Q && action == GLFW_PRESS)
