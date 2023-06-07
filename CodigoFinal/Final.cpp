@@ -30,6 +30,9 @@
 #include <model.h>
 #include <Skybox.h>
 #include <iostream>
+//Para leer archivos
+#include <fstream>
+#include <string.h>
 
 //#pragma comment(lib, "winmm.lib")
 
@@ -98,101 +101,60 @@ float	movPinX1 = -592.5f,
 		movAlaIzqZ = -575.5f,
 		rotAlaIzq = 0.0f;
 
+//Variables Cocodrilo
+ifstream AnimCoco;
+string strC;
+int indC = 0;
+
 //Keyframes (Cocodrilo)
-float	posCocoX = 80.0f;
+float	posCocoX = 110.0f;
 float	incXcoco = 0.0f;
-float	posCocoY = 0.0f;
+float	posCocoY = -13.0f;
 float	incYcoco = 0.0f;
 float	posCocoZ = -515.0f;
 float	incZcoco = 0.0f;
 float	giroCoco = 0.0f;
 float	giroCocoInc = 0.0f;
 
-////Keyframes (Manipulación y dibujo)
-//float	posX = 0.0f,
-//		posY = 0.0f,
-//		posZ = 0.0f,
-//		rotRodIzq = 0.0f,
-//		giroMonito = 0.0f;
-//float	incX = 0.0f,
-//		incY = 0.0f,
-//		incZ = 0.0f,
-//		rotInc = 0.0f,
-//		giroMonitoInc = 0.0f;
-
-#define MAX_FRAMES 9
+#define MAX_FRAMES_C 20
 int i_max_steps = 60;
 int i_curr_steps = 0;
 typedef struct _frame
-{
-	////Variables para GUARDAR Key Frames
-	//float posX;		//Variable para PosicionX
-	//float posY;		//Variable para PosicionY
-	//float posZ;		//Variable para PosicionZ
-	//float rotRodIzq;
-	//float giroMonito;
-
-	//Variables para guardar KeyFrames Cocodrilo
+{	//Variables para guardar KeyFrames Cocodrilo
 	float posCocoX;
 	float posCocoY;
 	float posCocoZ;
 	float giroCoco;
 
-}FRAME;
+}FRAME_COCODRILO;
 
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir número en caso de tener Key guardados
+FRAME_COCODRILO KeyFrame[MAX_FRAMES_C];
+int FrameIndexCocodrilo = 0;			//introducir número en caso de tener Key guardados
 bool play = false;
 int playIndex = 0;
 
-void saveFrame(void)
+void saveFrameC(void)
 {
 	//printf("frameindex %d\n", FrameIndex);
-	std::cout << "Frame Index = " << FrameIndex << std::endl;
+	std::cout << "Frame Index = " << FrameIndexCocodrilo << std::endl;
 
-	/*KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
+	KeyFrame[FrameIndexCocodrilo].posCocoX = posCocoX;
+	KeyFrame[FrameIndexCocodrilo].posCocoY = posCocoY;
+	KeyFrame[FrameIndexCocodrilo].posCocoZ = posCocoZ;
+	KeyFrame[FrameIndexCocodrilo].giroCoco = giroCoco;
 
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].giroMonito = giroMonito;*/
-
-
-	KeyFrame[FrameIndex].posCocoX = posCocoX;
-	KeyFrame[FrameIndex].posCocoY = posCocoY;
-	KeyFrame[FrameIndex].posCocoZ = posCocoZ;
-	KeyFrame[FrameIndex].giroCoco = giroCoco;
-
-
-
-	FrameIndex++;
+	FrameIndexCocodrilo++;
 }
 
 void resetElements(void)
-{
-	/*posX = KeyFrame[0].posX;
-	posY = KeyFrame[0].posY;
-	posZ = KeyFrame[0].posZ;
-
-	rotRodIzq = KeyFrame[0].rotRodIzq;
-	giroMonito = KeyFrame[0].giroMonito;*/
-
-	posCocoX = KeyFrame[0].posCocoX;
+{	posCocoX = KeyFrame[0].posCocoX;
 	posCocoY = KeyFrame[0].posCocoY;
 	posCocoZ = KeyFrame[0].posCocoZ;
 	giroCoco = KeyFrame[0].giroCoco;
 }
 
 void interpolation(void)
-{
-	/*incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
-	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
-	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-
-	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;*/
-
-	incXcoco = (KeyFrame[playIndex + 1].posCocoX - KeyFrame[playIndex].posCocoX) / i_max_steps;
+{	incXcoco = (KeyFrame[playIndex + 1].posCocoX - KeyFrame[playIndex].posCocoX) / i_max_steps;
 	incYcoco = (KeyFrame[playIndex + 1].posCocoY - KeyFrame[playIndex].posCocoY) / i_max_steps;
 	incZcoco = (KeyFrame[playIndex + 1].posCocoZ - KeyFrame[playIndex].posCocoZ) / i_max_steps;
 	giroCocoInc = (KeyFrame[playIndex + 1].giroCoco - KeyFrame[playIndex].giroCoco) / i_max_steps;
@@ -216,7 +178,7 @@ void animate(void)
 		if (i_curr_steps >= i_max_steps) //end of animation between frames?
 		{
 			playIndex++;
-			if (playIndex > FrameIndex - 2)	//end of total animation?
+			if (playIndex > FrameIndexCocodrilo - 2)	//end of total animation?
 			{
 				std::cout << "Animation ended" << std::endl;
 				//printf("termina anim\n");
@@ -231,16 +193,9 @@ void animate(void)
 			}
 		}
 		else
-		{
-			//Draw animation
-			/*posX += incX;
-			posY += incY;
-			posZ += incZ;
-
-			rotRodIzq += rotInc;
-			giroMonito += giroMonitoInc;*/
-
+		{	//Draw animation
 			posCocoX += incXcoco;
+			posCocoY += incYcoco;
 			posCocoZ += incZcoco;
 			giroCoco += giroCocoInc;
 
@@ -397,20 +352,31 @@ int main()
 	
 
 	//Inicialización de KeyFrames
-	for (int i = 0; i < MAX_FRAMES; i++)
-	{
-		/*KeyFrame[i].posX = 0;
-		KeyFrame[i].posY = 0;
-		KeyFrame[i].posZ = 0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].giroMonito = 0;*/
+	AnimCoco.open("Animaciones/AnimCocodrilo.txt", ios::in);
+	//SaveFrame Cocodrilo
+	while (indC < MAX_FRAMES_C && !AnimCoco.eof()) {
+		getline(AnimCoco, strC);
+		posCocoX = stof(strC);
+		getline(AnimCoco, strC);
+		posCocoY = stof(strC);
+		getline(AnimCoco, strC);
+		posCocoZ = stof(strC);
+		getline(AnimCoco, strC);
+		giroCoco = stof(strC);
 
-		KeyFrame[i].posCocoX = 0;
+		saveFrameC();
+
+		indC++;
+	}
+	AnimCoco.close();
+	
+	/*for (int i = 0; i < MAX_FRAMES; i++)
+	{	KeyFrame[i].posCocoX = 0;
 		KeyFrame[i].posCocoY = 0;
 		KeyFrame[i].posCocoZ = 0;
 		KeyFrame[i].giroCoco = 0;
 
-	}
+	}*/
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -492,14 +458,7 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-
-		//model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(-20.0f, -1.75f, 0.0f));
-		//model = glm::scale(model, glm::vec3(0.2f));
-		//staticShader.setMat4("model", model);
-		///*piso.Draw(staticShader);*/
-
-
+		
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, -1.0f, -100.0f));
 		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
@@ -516,8 +475,6 @@ int main()
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Iglu.Draw(staticShader);
-
-
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		//                                                 Animales
@@ -776,7 +733,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 	{
-		if (play == false && (FrameIndex > 1))
+		if (play == false && (FrameIndexCocodrilo > 1))
 		{
 			std::cout << "Play animation" << std::endl;
 			resetElements();
@@ -797,9 +754,9 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//To Save a KeyFrame
 	if (key == GLFW_KEY_L && action == GLFW_PRESS)
 	{
-		if (FrameIndex < MAX_FRAMES)
+		if (FrameIndexCocodrilo < MAX_FRAMES_C)
 		{
-			saveFrame();
+			saveFrameC();
 		}
 	}
 
