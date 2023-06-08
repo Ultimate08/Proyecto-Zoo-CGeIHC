@@ -1,0 +1,300 @@
+newmtl Ala_der_mat_0_TPenguin_Diffuse_jpg
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl Ala_izq_mat_0_TPenguin_Diffuse_jpg
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl Pie_izq_mat_0_TPenguin_Diffuse_jpg4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl Pie_izq_mat_0_TPenguin_Diffuse_jpg_005
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl Pie_izq_mat_0_TPenguin_Diffuse_jpg_007
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl Pool_Filling2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd arroway.de_tiles-42_d100.jpg
+bump  -bm 1 arroway.de_tiles-42_s100-g100.jpg
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl Pool_Material2
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 360.00
+newmtl Pool_Material_014
+illum 4
+Kd 0.88 1.00 0.91
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl Pool_Material_015
+illum 4
+Kd 0.71 0.65 0.40
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl Pool_Material_016
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 360.00
+newmtl Pool_Metal2
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 1.00 1.00 1.00
+Ns 722.50
+newmtl Pool_Rim2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd -o_10.06_11_stone_0104_c.jpg
+bump  -bm 1 stone_0104_N.jpg
+Ni 1.45
+Ks 0.09 0.09 0.09
+Ns 250.00
+newmtl lambert11SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd stainless-steel.png
+Ni 1.00
+newmtl pasted__Ala_der_mat_0_TPenguin_Diffuse_jpg
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Ala_der_mat_0_TPenguin_Diffuse_jpg2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Ala_izq_mat_0_TPenguin_Diffuse_jpg
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Ala_izq_mat_0_TPenguin_Diffuse_jpg2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg6
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg_005
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg_007
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg_009
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl pasted__Pie_izq_mat_0_TPenguin_Diffuse_jpg_011
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TPenguin_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 9.85
+newmtl piscina_Cement
+illum 4
+Kd 0.09 0.09 0.09
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl piscina_Filling
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd arroway.de_tiles-42_d100.jpg
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl piscina_Material
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 360.00
+newmtl piscina_Material_001
+illum 4
+Kd 0.88 1.00 0.91
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl piscina_Material_003
+illum 4
+Kd 0.71 0.65 0.40
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 0.00
+newmtl piscina_Material_006
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl piscina_Pool_Material_007
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 360.00
+newmtl piscina_Pool_Material_011
+illum 4
+Kd 0.80 0.62 0.41
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 250.00
+newmtl piscina_Pool_Metal
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 1.00 1.00 1.00
+Ns 722.50
+newmtl piscina_Rim
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd -o_10.06_11_stone_0104_c.jpg
+Ni 1.45
+Ks 0.09 0.09 0.09
+Ns 250.00
+newmtl piscina_Tiles
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.09 0.09 0.09
+Ns 490.00
+newmtl piscina_Tiles_001
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.45
+Ks 0.09 0.09 0.09
+Ns 490.00
