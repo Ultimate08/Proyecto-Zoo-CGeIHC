@@ -1,0 +1,15 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (cgeihc_2023-2.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+  Final.cpp
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(609,21): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(610,21): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1804,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1805,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1809,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1810,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1812,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1813,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\CodigoFinal\Final.cpp(1821,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  CodigoFinal.vcxproj -> C:\Users\efaja\Downloads\Clases 2023-2\Compu Gráfica\Proyecto\Proyecto-Zoo-CGeIHC\Debug\CodigoFinal.exe

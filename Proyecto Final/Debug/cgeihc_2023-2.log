@@ -1,0 +1,7 @@
+﻿  main_prac04.cpp
+<<<<<<< HEAD
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  cgeihc_2023-2.vcxproj -> C:\Users\CGIH09.DESKTOP-473MOA8\Documents\Practicas CG-Github\PracticasCG\Debug\cgeihc_2023-2.exe
+=======
+  cgeihc_2023-2.vcxproj -> C:\Users\k-gat\OneDrive\Documentos\2023-2\Lab. Compu Grafica\PracticasCG\Debug\cgeihc_2023-2.exe
+>>>>>>> e1302959d8571b7e89deb156a3ae812eb0df3ea7
