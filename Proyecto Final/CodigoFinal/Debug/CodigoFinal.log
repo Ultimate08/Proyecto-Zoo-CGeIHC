@@ -1,0 +1,19 @@
+﻿  Final.cpp
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(609,21): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(610,21): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1804,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1805,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1809,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1810,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1812,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1813,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\CodigoFinal\Final.cpp(1821,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+glfw3.lib(input.obj) : warning LNK4099: no se encontró PDB '' con 'glfw3.lib(input.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(monitor.obj) : warning LNK4099: no se encontró PDB '' con 'glfw3.lib(monitor.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(window.obj) : warning LNK4099: no se encontró PDB '' con 'glfw3.lib(window.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_joystick.obj) : warning LNK4099: no se encontró PDB '' con 'glfw3.lib(win32_joystick.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_window.obj) : warning LNK4099: no se encontró PDB '' con 'glfw3.lib(win32_window.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+  CodigoFinal.vcxproj -> C:\Users\k-gat\OneDrive\Documentos\2023-2\Proyecto Teoría\Codigo Final\Proyecto-Zoo-CGeIHC\Proyecto Final\Debug\CodigoFinal.exe
